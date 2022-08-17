@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %} Add {% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <h1 style="text-align:center;" class="h1">Employees</h1>
+        <hr class="intro-divider">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ url_for('show_departments') }}">Departments</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Employees</li>
+            </ol>
+          </nav>
+        </div>
+        {% if employees %}
+         
+          <div class="center">
+            <table class="table table-bordered table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope ='col' width="15%"> Name </th>
+                  <th scope ='col' width="30%"> Department </th>
+                  <th scope ='col' width="30%"> Job Title </th>
+                  <th scope ='col' width="30%"> Years Of Experience </th>
+                  <th scope ='col' width="15%"> Salary </th>
+                  <th scope ='col' width="15%"> Edit </th>
+                  <th scope ='col' width="15%"> Delete </th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+              {% for employee in employees %}
+                
+                    <tr>
+                      <td> {{ employee.first_name }} {{ employee.last_name }} </td>
+                      <td> {{ employee.department.name }} </td>
+                      <td> {{ employee.job_title }}  </td>
+                      <td> {{ employee.years_of_experience }}  </td>
+                      <td> {{ employee.salary }}</td>
+                      <td>
+                        <a class="btn btn-outline-secondary" href="{{ url_for('edit_employee', id=employee.id) }}" role="button">
+                          <i class="fa-solid fa-pen-to-square"></i> </a>
+                       
+                      </td>
+                      <td>
+                        <a class="btn btn-outline-secondary" href="{{ url_for('delete_employee', id=employee.id) }}" role="button">
+                          <i class="fa-solid fa-trash-can"> </i></a>
+                        
+                      </td>
+                    </tr>
+                
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+            {% else %}
+              <div style="text-align: center">
+                <h3> No Employees have been added. </h3>
+                <hr class="intro-divider">
+            {% endif %}
+            <div class="col-md-12 text-center">
+              <a class="btn btn-outline-secondary" href="{{ url_for('add_employee') }}" role="button">Add Employee</a>
+               </div> 
+              
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

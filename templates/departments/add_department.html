@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} Add {% endblock %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block body %}
+    <div class="container">
+      <h1 style="text-align:center;" class="h1">Add Department</h1>
+      <hr class="intro-divider">
+      <form method="POST">
+        <div class="form-group row">
+          
+          <label for="name" class=" col-form-label-lg">Department Name</label>
+          
+          <input
+            class = "form-control"
+            type="text"
+            name="name"
+            placeholder="Name of Department"
+          />
+        
+        </div>
+        
+        <a class="btn btn-outline-secondary" href="{{ url_for('show_departments') }}" role="button">
+          <i class="fa-solid fa-arrow-left"></i> Back</a>
+        <input class="btn btn-secondary" type="submit" value="Submit">
+        
+      </form>
+    </div>
+    {% endblock %}

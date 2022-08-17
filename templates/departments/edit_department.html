@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} All Departments {% endblock %}
+{% block body %}
+    <div class="container">
+      {% if message %}
+      <p class="message">{{ message | safe }}</p>
+      {% endif %}
+      <h1 style="text-align:center;" class="h1">Edit Department</h1>
+      <hr class="intro-divider">
+      <form method="POST">
+        <div class="form-group">
+          
+          <label for="name">Department Name</label>
+          <input
+            class = "form-control"
+            type="text"
+            name="name"
+            placeholder={{department.name}}
+            value= {{department.name}}
+          />
+        </div>
+        <a class="btn btn-outline-secondary" href="{{ url_for('show_departments') }}" role="button">
+          <i class="fa-solid fa-arrow-left"></i> Back</a>
+        <input type="submit" value="Submit" class="btn btn-secondary" />
+      </form>
+      
+    </div>
+    {% endblock %}
